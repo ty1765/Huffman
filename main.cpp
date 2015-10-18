@@ -12,6 +12,8 @@ int main(int argc, char *argv[])
 	if(argc == 2){
 		string file = argv[1];
 		ifstream inFile;
+		char c;
+		int arr[256];
 
 		inFile.open(file.c_str());
 
@@ -19,6 +21,14 @@ int main(int argc, char *argv[])
 			cerr << "Failure opening file!" << endl;
 			exit(1);
 		}
+
+		while(inFile >> c){
+			arr[int(c)]++;
+		}
+		size_t pos = file.find(".");
+		string oFile = file.substr(0, pos) + ".hzip";
+		ofstream outFile;
+		outFile.open(oFile.c_str());
 	}
 	else{
 		cerr << "Invalid Number of Arguments!" << endl;
