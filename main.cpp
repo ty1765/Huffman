@@ -14,6 +14,9 @@ int main(int argc, char *argv[])
 		ifstream inFile;
 		char c;
 		int arr[256];
+		for(int i = 0; i < 256; i++){
+			arr[i] = 0;
+		}
 
 		inFile.open(file.c_str());
 
