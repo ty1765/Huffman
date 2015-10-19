@@ -51,18 +51,24 @@ int main(int argc, char *argv[])
 			TreePtr NewTree = newTree(ptr, ptr2);
 			pq.push(NewTree);
 		}
-		cout << pq.top()->info.frequency << endl;
+		//cout << pq.top()->info.frequency << endl;
 
 		TreePtr Final = pq.top();
 		pq.pop();
-
+		
 		PostOrder(Final);
-
+	/*
+		size_t pos = file.find(".");
+		string oFile = file.substr(0, pos) + ".tree";
+		ofstream outFile;
+		outFile.open(oFile.c_str());
+		outFile <*/
+	}
 		//size_t pos = file.find(".");
 		//string oFile = file.substr(0, pos) + ".hzip";
 		//ofstream outFile;
 		//outFile.open(oFile.c_str());
-	}
+	
 	else{
 		cerr << "Invalid Number of Arguments!" << endl;
 	}

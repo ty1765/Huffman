@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "huffman.h"
 
 using namespace std;
@@ -18,7 +19,7 @@ TreePtr newTree (TreePtr& left, TreePtr& right, char c = '@', int i = -1)
         Tree->info.frequency = left->info.frequency + right->info.frequency;
 
     Tree->info.c = c;
-    
+
     return Tree;
 }
 
@@ -49,7 +50,7 @@ void PostOrder (TreePtr Ptr)
     {
         PostOrder(Ptr->left);
         PostOrder(Ptr->right);
-        cout << Ptr->info.frequency << ":" << Ptr->info.c << " ";
+        cout << Ptr->info.c;
     }
 }
 
