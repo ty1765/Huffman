@@ -25,9 +25,16 @@ int main(int argc, char *argv[])
 			exit(1);
 		}
 
-		while(inFile >> c){
+		while(inFile >> noskipws >> c){
 			arr[int(c)]++;
 		}
+
+		for(int i = 0; i < 256; i++){
+			if(arr[i] != 0){
+				cout << char(i) << ": " << arr[i] << endl;
+			}
+		}
+
 		size_t pos = file.find(".");
 		string oFile = file.substr(0, pos) + ".hzip";
 		ofstream outFile;
