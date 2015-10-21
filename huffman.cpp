@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 #include "huffman.h"
 
 using namespace std;
@@ -44,13 +45,13 @@ void PreOrder (TreePtr Ptr)
 }
 
 
-void PostOrder (TreePtr Ptr)
+void PostOrder (TreePtr Ptr, ofstream& outFile)
 {
     if (Ptr != NULL)
     {
-        PostOrder(Ptr->left);
-        PostOrder(Ptr->right);
-        cout << Ptr->info.c;
+        PostOrder(Ptr->left, outFile);
+        PostOrder(Ptr->right, outFile);
+        outFile << Ptr->info.c;
     }
 }
 

@@ -55,14 +55,12 @@ int main(int argc, char *argv[])
 
 		TreePtr Final = pq.top();
 		pq.pop();
-		
-		PostOrder(Final);
-	/*
+	
 		size_t pos = file.find(".");
-		string oFile = file.substr(0, pos) + ".tree";
+		string oFile = file.substr(0, pos) + "tree.txt";
 		ofstream outFile;
 		outFile.open(oFile.c_str());
-		outFile <*/
+		PostOrder(Final, outFile);
 	}
 		//size_t pos = file.find(".");
 		//string oFile = file.substr(0, pos) + ".hzip";
