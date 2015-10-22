@@ -5,10 +5,7 @@ struct huffman {
     long long int frequency;
     char c; //Character represented in file
 };
-
-// use a priotity queue with pointers to huffman and add the frequencyuencys together and make
-// char @ for interior nodes and make frquencies of the head the totals. 
-
+ 
 struct TreeNodeType;
 typedef TreeNodeType* TreePtr;
 

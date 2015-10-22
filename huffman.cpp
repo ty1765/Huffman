@@ -34,13 +34,18 @@ void InOrder (TreePtr Ptr)
     }
 }
 
-void PreOrder (TreePtr Ptr)
+void MakeBinary (TreePtr Ptr, string bits[], string s)
 {
     if (Ptr != NULL)
     {
-        cout << Ptr->info.frequency << ":" << Ptr->info.c << " ";
-        PreOrder(Ptr->left);
-        PreOrder(Ptr->right);
+        MakeBinary(Ptr->left, bits, s+='0');
+        s = s.substr(0, s.length() - 1);
+        if(Ptr->info.c != '@'){
+        	bits[int(Ptr->info.c)] = s;
+        	s = s.substr(0, s.length() - 1);
+        }
+        MakeBinary(Ptr->right, bits, s+='1');
+        s = s.substr(0, s.length() - 1);
     }
 }
 
@@ -51,6 +56,7 @@ void PostOrder (TreePtr Ptr, ofstream& outFile)
     {
         PostOrder(Ptr->left, outFile);
         PostOrder(Ptr->right, outFile);
+        cout << Ptr->info.c;
         outFile << Ptr->info.c;
     }
 }
@@ -69,7 +75,7 @@ class CompareFrequency {
 public:
     bool operator()(TreePtr& t1, TreePtr& t2)
     {
-       if (t1->info.frequency > t2->info.frequency) return true;
+       if (t1->info.frequency >= t2->info.frequency) return true;
        return false;
     }
 };
