@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 		while(inFile >> noskipws >> c){
 			arr[int(c)]++;
 		}
-
+		arr[3]++;
 		inFile.close();
 		//creates a priority queue 
 		priority_queue<TreePtr, vector<TreePtr>, CompareFrequency> pq;
@@ -51,19 +51,14 @@ int main(int argc, char *argv[])
 			TreePtr NewTree = newTree(ptr2, ptr);
 			pq.push(NewTree);
 		}
-		//cout << pq.top()->info.frequency << endl;
 
 		TreePtr Final = pq.top();
 		pq.pop();
 		
 		cout << "Huffman Tree: ";
 
-		size_t pos = file.find(".");
-		string oFile = file.substr(0, pos) + "tree.txt";
-		ofstream outFile;
-		outFile.open(oFile.c_str());
-		PostOrder(Final, outFile);
-		outFile.close();
+		PostOrder(Final);
+	
 		cout << endl;
 
 		string BitPattern[256]; // for bit values
@@ -73,15 +68,41 @@ int main(int argc, char *argv[])
 		
 		MakeBinary(Final, BitPattern, "");
 		for(int i = 0; i < 256; i++){
-			if(BitPattern[i] != "")
+			if(BitPattern[i] != ""){
 				cout << char(i) << "(" << BitPattern[i].length() << ")" << ":" << BitPattern[i] << endl;
+			}
 		}
 
+		size_t pos = file.find(".");
+		string oFile = file.substr(0, pos) + ".hzip";
+		ofstream outFile;
+		outFile.open(oFile.c_str());
+
+		inFile.open(file.c_str());
+		string s;
+
+		while(inFile >> c){
+			s += BitPattern[int(c)];
+			if(s.length() >= 8){
+				outFile << bitConvert(s.substr(0, 8));
+				s = s.substr(8, s.length() - 8);
+			}
+		}
+
+		//make sure file end with 8 bits
+		s += BitPattern[3];
+		while(s.length() > 0){
+
+			while(s.length() < 8){
+				s += "0";
+			}
+			outFile << bitConvert(s.substr(0, 8));
+			s = s.substr(8, s.length() - 8);
+		}
+		outFile.close();
+		inFile.close();
+
 	}
-		//size_t pos = file.find(".");
-		//string oFile = file.substr(0, pos) + ".hzip";
-		//ofstream outFile;
-		//outFile.open(oFile.c_str());
 	
 	else{
 		cerr << "Invalid Number of Arguments!" << endl;

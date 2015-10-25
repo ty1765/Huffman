@@ -18,8 +18,7 @@ struct TreeNodeType
 
 TreePtr newTree (TreePtr& left, TreePtr& right, char, long long int);
 
-void InOrder(TreePtr);	
-void PreOrder(TreePtr);
+void MakeBinary(TreePtr, std::string, std::string);
 void PostOrder(TreePtr);
 void deleteTree(TreePtr);
 

@@ -24,15 +24,6 @@ TreePtr newTree (TreePtr& left, TreePtr& right, char c = '@', int i = -1)
     return Tree;
 }
 
-void InOrder (TreePtr Ptr)
-{
-    if (Ptr != NULL)
-    {
-        InOrder(Ptr->left);
-        cout << Ptr->info.frequency << ":" << Ptr->info.c << " ";
-        InOrder(Ptr->right);
-    }
-}
 
 void MakeBinary (TreePtr Ptr, string bits[], string s)
 {
@@ -50,14 +41,13 @@ void MakeBinary (TreePtr Ptr, string bits[], string s)
 }
 
 
-void PostOrder (TreePtr Ptr, ofstream& outFile)
+void PostOrder (TreePtr Ptr)
 {
     if (Ptr != NULL)
     {
-        PostOrder(Ptr->left, outFile);
-        PostOrder(Ptr->right, outFile);
+        PostOrder(Ptr->left);
+        PostOrder(Ptr->right);
         cout << Ptr->info.c;
-        outFile << Ptr->info.c;
     }
 }
 
@@ -69,6 +59,36 @@ void deleteTree(TreePtr root)
     }
     else
         delete (root);
+}
+
+char bitConvert(string s){
+	char c = 0;
+
+	if(s[0] == '1'){
+		c += 128;
+	}
+	if(s[1] == '1'){
+		c += 64;
+	}
+	if(s[2] == '1'){
+		c += 32;
+	}
+	if(s[3] == '1'){
+		c += 16;
+	}
+	if(s[4] == '1'){
+		c += 8;
+	}
+	if(s[5] == '1'){
+		c += 4;
+	}
+	if(s[6] == '1'){
+		c += 2;
+	}
+	if(s[7] == '1'){
+		c += 1;
+	}
+	return c;
 }
 
 class CompareFrequency {
